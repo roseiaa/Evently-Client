@@ -75,7 +75,7 @@ function EventPage() {
           title: "Actions",
           dataIndex: "actions",
           key: "actions",
-          render: (row: any) => {
+          render: (_: any,row: any) => {
             return (
               <div className="flex gap-5">
                 <Pen className='cursor-pointer text-blue-500' size={16} onClick={() => navigate(`/admin/events/edit/${row._id}`)}/>
