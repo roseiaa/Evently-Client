@@ -25,6 +25,7 @@ Staff accounts have additional permissions:
 
 ---
 ## Login 
+   Click here to see the [Hosted Version](https://evently-client.vercel.app/profile/bookings)
    Here I will add two generic users created for testing the application:
    ```
    Staff User:
