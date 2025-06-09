@@ -25,7 +25,7 @@ Staff accounts have additional permissions:
 
 ---
 ## Login 
-   Click here to see the [Hosted Version]((https://evently-client-9k5yhnjyt-roseiaas-projects.vercel.app/login))
+   Click here to see the [Hosted Version]((https://evently-client-hd4p838nm-roseiaas-projects.vercel.app/login))
    
    Here I will add two generic users created for testing the application:
    ```
