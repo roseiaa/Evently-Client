@@ -39,7 +39,7 @@ CVC: 123
 ## Running Locally
 
 > **Note:** To run the frontend locally, you **must** have the backend repository running as well.  
-> You can find the backend repo here: [Backend Repository Link](<Link>)
+> You can find the backend repo here: [Backend Repository Link]([<Link>](https://github.com/roseiaa/Evently-Server/tree/main?tab=readme-ov-file))
 
 ### Steps to run locally:
 
