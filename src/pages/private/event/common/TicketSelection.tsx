@@ -7,12 +7,15 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { getClientSecret } from "../../../../api/paymentsService";
 import { generateGoogleCalendarLink } from "../../../../utils/googleCalendarLink";
+import { createBooking } from "../../../../api/bookingsService";
+import { useNavigate } from "react-router-dom";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 function TicketSelection({ eventData }: { eventData: EventType }) {
   const [selectedTicketType, setSelectedTicketType] = useState<string>("");
   const [maxCount, setMaxCount] = useState<number>(1);
+  const navigate = useNavigate();
   const [ticketCount, setTicketCount] = useState<number>(1);
   const [showPaymentModal, setShowPaymentModal] = useState<boolean>(false);
   const [stripeOptions, setStripeOptions] = useState<any>({});
@@ -32,6 +35,22 @@ function TicketSelection({ eventData }: { eventData: EventType }) {
   )?.price;
 
   const totalAmount = (selectedTicketPrice! || 0) * (ticketCount || 0);
+
+  const handleBooking = async () => {
+    console.log("hit");
+    const bookingPayload = {
+      event: eventData._id,
+      ticketType: "None",
+      ticketCount: 0,
+      totalAmount: "0",
+      paymentId: "N/A",
+      status: "booked",
+    };
+    console.log(bookingPayload);
+    await createBooking(bookingPayload);
+    message.success("Booking successful");
+    navigate("/profile/bookings");
+  };
 
   const getClientSecretAndOpenModal = async () => {
     try {
@@ -129,22 +148,33 @@ function TicketSelection({ eventData }: { eventData: EventType }) {
           )}
         </div>
       ) : (
-        <div className="flex">
-        <div className="bg-gray-100 rounded flex justify-center items-center p-1">
-          <h1 className="text-xl  text-gray-600 p-0 m-0 font-semibold">
-            Free Entry: No ticket required.
-          </h1>
-          
-        </div>
+        <div className="flex flex-col md:flex-row lg:justfiy-evenly gap-3 items-center w-full">
+          <div className="bg-gray-100 rounded flex justify-center items-center p-1">
+            <h1 className="text-xl  text-gray-600 p-0 m-0 font-semibold">
+              Free Entry: No ticket required.
+            </h1>
+          </div>
+          <div>
+ <Button 
+            type="primary" 
+            className="mx-5"
+            onClick={() => {
+              handleBooking();
+            }}
+          >
+            Add to Bookings
+          </Button>
           <Button
-        type="link"
-        href={calendarLink}
-        target="_blank"
-        className="text-titles"
-      >
-        Add Event to Calendar
-      </Button>
-      </div>
+            type="link"
+            href={calendarLink}
+            target="_blank"
+            className="text-titles"
+          >
+            Add Event to Calendar
+          </Button>
+          </div>
+         
+        </div>
       )}
     </div>
   );
