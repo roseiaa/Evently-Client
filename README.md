@@ -24,6 +24,19 @@ Staff accounts have additional permissions:
 - Promote or demote user accounts to/from staff status (**please use this power responsibly**).
 
 ---
+## Login 
+   Here I will add two generic users created for testing the application:
+   ```
+   Staff User:
+   Email: staff@gmail.com
+   Password: staff
+   ```
+   ```
+   Standard User:
+   Email: user@gmail.com
+   Password: user
+   ```
+   Feel free to create your own user login and events to test the application
 
 ## Stripe Payments
 
